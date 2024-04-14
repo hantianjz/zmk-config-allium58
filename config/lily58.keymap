@@ -78,7 +78,7 @@
 &trans     &mkp MB1 &kp UP   &mkp MB2  &trans  &trans                  &trans   &trans    &trans    &trans    &trans   &trans
 &trans     &kp LEFT &kp DOWN &kp RIGHT &trans  &trans                  &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans   &trans
 &trans     &trans   &trans   &trans    &trans  &trans  &trans   &trans &trans   &trans    &trans    &trans    &trans   &trans
-                             &trans    &trans  &trans  &trans   &trans &trans   &kp PG_DN &lp PG_UP
+                             &trans    &trans  &trans  &trans   &trans &trans   &kp PG_DN &kp PG_UP
             >;
         };
 
