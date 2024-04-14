@@ -7,34 +7,47 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/ext_power.h>
 
+
 #define _QWERTY 0
-#define _FUNC 1 
-#define _SHFT 2 
+#define _FUNC 1
+#define _SHFT 2
 #define _TMUX 3
 #define _SYSM 4
 
 #define AS(keycode) &as LS(keycode) keycode
 
 / {
+    behaviors {
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <135>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
 
         default_layer {
 /* QWERTY
- * ,-----------------------------------------.                                  ,-----------------------------------------.
- * | GESC |   1  |   2  |   3  |   4  |   5  |                                  |   6  |   7  |   8  |   9  |   0  | Bksp |
- * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
- * |  TAB |   Q  |   W  |   E  |   R  |   T  |                                  |   Y  |   U  |   I  |   O  |   P  |  Del |
- * |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
- * |CTL(T)|   A  |   S  |   D  |   F  |   G  |-------.                  ,-------|   H  |   J  |   K  |   L  |   ;  | Enter|
- * |------+------+------+------+------+------|_SYSTM |                  |_SYSTM |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|                  |-------|   N  |   M  |   ,  |   .  |   /  |  '   |
- * `-----------------------------------------/       /                   \      \-----------------------------------------'
- *                   | INS  | LAlt | LGUI | /Space  /                     \Space \  |RShift| LT/DN | RT/UP|
- *                   `----------------------------'                         '----------------------------'
+ *                ,-----------------------------------------.                    ,-----------------------------------------.
+ *                | GESC |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | Bksp |
+ *                |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ *                |  TAB |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  Del |
+ *                |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ *                |CTL(T)|   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  | Enter|
+ *                |------+------+------+------+------+------|_SYSTM |    |_SYSTM |------+------+------+------+------+------|
+ *                |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  '   |
+ *                `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                                  | INS  | LAlt | LGUI | /Space  /       \Space \  |RShift| LT/DN | RT/UP|
+ *                                  `----------------------------'           '----------------------------'
  */
             bindings = <
 &gresc        AS(N1) AS(N2) AS(N3)   AS(N4)   AS(N5)                                     AS(N6)    AS(N7)   AS(N8)    AS(N9)  AS(N0)   &kp BSPC
@@ -44,6 +57,98 @@
                             &kp INS  &kp LALT &kp LGUI  &lt _FUNC SPACE  &lt _SHFT SPACE AS(MINUS) &kp BSPC &kp UP
             >;
 
+        };
+
+        func_layer {
+/* FUNCTION
+ *        ,-----------------------------------------.                   ,-----------------------------------------.
+ *        |KC_GRV|  F1  |  F2  |  F3  |  F4  |  F5  |                   |  F6  |  F7  |  F8  |  F9  | F10  |      |
+ *        |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ *        |      | MB1  |  UP  | MB2  |      |      |                   |      |      |      |      |      |      |
+ *        |------+------+------+------+------+------|                   |------+------+------+------+------+------|
+ *        | CTL  | LEFT | DOWN | RGHT |      |      |-------.   ,-------| LEFT | DOWN |  UP  | RGHT |      |      |
+ *        |------+------+------+------+------+------|       |   |       |------+------+------+------+------+------|
+ *        |      |      |      |      |      |      |-------|   |-------|      |      |      |      |      |      |
+ *        `-----------------------------------------/       /    \      \-----------------------------------------'
+ *                          |      |      |      | /       /      \      \  |RShift|PU/HM | PD/ED|
+ *                          `----------------------------'          '------''--------------------'
+ */
+            bindings = <
+&kp GRAVE  &kp F1   &kp F2   &kp F3    &kp F4  &kp F5                  &kp F6   &kp F7    &kp F8    &kp F9    &kp F10  &trans
+&trans     &mkp MB1 &kp UP   &mkp MB2  &trans  &trans                  &trans   &trans    &trans    &trans    &trans   &trans
+&trans     &kp LEFT &kp DOWN &kp RIGHT &trans  &trans                  &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans   &trans
+&trans     &trans   &trans   &trans    &trans  &trans  &trans   &trans &trans   &trans    &trans    &trans    &trans   &trans
+                             &trans    &trans  &trans  &trans   &trans &trans   &kp PG_DN &lp PG_UP
+            >;
+        };
+
+        shift_layer {
+/* SHIFT
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |      |   !  |   @  |   #  |   $  |   %  |                    |      |   ^  |   &  |   *  |   (  |   )  |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------.    ,-------|      |   -  |   =  |   [  |   ]  |  T-: |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |  T-Z |  T-X |  T-C |  T-V |      |-------|    |-------|  T-N |  T-M |  T-, |      |      |   \  |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |      |      | /       /       \      \  |      | Down |  Up  |
+ *                   `----------------------------'           '------''--------------------'
+ */
+            bindings = <
+&trans &trans &trans &trans  &trans  &trans                       &trans      &trans    &trans    &trans   &trans   &trans
+&trans &trans &trans &trans  &trans  &trans                       &trans      &trans    &trans    &trans   &trans   &trans
+&trans &trans &trans &trans  &trans  &trans                       &trans      AS(MINUS) AS(EQUAL) AS(LBKT) AS(RBKT) &trans
+&trans &trans &trans &trans  &trans  &trans    &trans   &trans    &trans      &trans    &trans    &trans   &trans   AS(BSLH)
+                     &trans  &trans  &trans    &trans   &trans    &trans      &trans    &trans
+            >;
+        };
+
+        tmux_layer {
+
+/* TMUX
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |  T-Q |      |      |      |      |                    |      |      |      | T-CO |  T-P |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |  T-A |  T-S |  T-D |      |      |-------.    ,-------|      |  T-- |  T-+ |  T-[ |  T-] |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |  T-Z |  T-X |  T-C |  T-V |      |-------|    |-------|  T-N |  T-M |  T-, |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |      |      | /       /       \      \  |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+            bindings = <
+&trans &trans &trans &trans  &trans  &trans                       &trans      &trans    &trans    &trans &trans &trans
+&trans &trans &trans &trans  &trans  &trans                       &trans      &trans    &trans    &trans &trans &trans
+&trans &trans &trans &trans  &trans  &trans                       &trans      &trans    &trans    &trans &trans &trans
+&trans &trans &trans &trans  &trans  &trans    &trans   &trans    &trans      &trans    &trans    &trans &trans &trans
+                     &trans  &trans  &trans    &trans   &trans    &trans      &trans    &trans
+            >;
+        };
+
+        sysm_layer {
+/* SYSTEM
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |      | BT 1 | BT 2 | BT 3 | BT 4 | BT 5 |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    +------+------+------+------+------+------|
+ * |      |      | MS_U |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      | MS_L | MS_D | MS_R |      |      |-------.    ,-------|  P/P | Vol- | Vol+ |      |      |      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------|    |-------|      | MUTE |      |      |      |      |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |      |      | /       /       \      \  |      | MPRV | MNXT |
+ *                   `----------------------------'           '------''--------------------'
+ */
+&trans     &bt BT_SEL 0     &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3 &bt BT_SEL 4                 &trans           &trans       &trans       &trans  &trans  &trans
+&trans     &mkp MB1         &trans            &mkp MB2          &trans       &trans                       &trans           &trans       &trans       &trans  &trans  &trans
+&trans     &trans           &trans            &trans            &trans       &trans                       &kp C_PLAY_PAUSE &kp K_VOL_DN &kp C_VOL_UP &trans  &trans  &trans
+&bt BT_CLR &ext_power EP_ON &ext_power EP_OFF &ext_power EP_TOG &trans       &trans    &trans   &trans    &trans           &kp C_MUTE   &trans       &trans  &trans  &trans
+                                              &trans            &trans       &trans    &trans   &trans    &trans           &kp C_PREV   &kp C_NEXT
+            >;
         };
 
     };
