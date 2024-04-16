@@ -150,7 +150,7 @@
 &trans     &mkp MB1 &kp UP   &mkp MB2  &trans  &trans                     &trans   &trans    &trans    &trans    &trans   &trans
 &trans     &kp LEFT &kp DOWN &kp RIGHT &trans  &trans                     &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans   &trans
 &trans     &trans   &trans   &trans    &trans  &trans  &trans   &trans    &trans   &trans    &trans    &trans    &trans   &trans
-                             &trans    &trans  &trans  &trans   &lt _TMUX &trans   &td_pded &td_puhm
+                             &trans    &trans  &trans  &trans   &mo _TMUX &trans   &td_pded &td_puhm
             >;
         };
 
@@ -173,7 +173,7 @@
 &trans &trans   &trans &trans   &trans   &trans                          &trans      &trans    &trans    &trans   &trans   &trans
 &trans &trans   &trans &trans   &trans   &trans                          &trans      AS(MINUS) AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
 &trans TM(Z)    TM(X)  TM(C)    TM(V)    &trans    &trans      &trans    TM(N)       TM(M)     TM(COMMA) &trans   &trans   AS(BSLH)
-                       &trans   &trans   &trans    &lt _TMUX   &trans    &trans      &kp RIGHT  &kp LEFT
+                       &trans   &trans   &trans    &mo _TMUX   &trans    &trans      &kp LEFT  &kp RIGHT
             >;
         };
 
