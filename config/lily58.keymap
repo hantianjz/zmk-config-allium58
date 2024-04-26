@@ -21,7 +21,7 @@
 #define TM(keycode) &tmx keycode
 
 &lt {
-    tapping-term-ms = <100>;
+    tapping-term-ms = <175>;
 };
 
 / {
@@ -84,9 +84,18 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp TILDE>;
-            mods = <(MOD_LCTL)>;
+            mods = <(MOD_LCTL|MOD_LSFT|MOD_LGUI)>;
         };
         wd_del: macro_word_del {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp DEL>
+                , <&macro_release &kp LALT>
+                ;
+        };
+        wd_bksp: macro_word_del {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -94,6 +103,12 @@
                 , <&macro_tap &kp BSPC>
                 , <&macro_release &kp LALT>
                 ;
+        };
+        td_bksp_wd: tap_dance_bksp_wd_bksp {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&kp BSPC>, <&wd_bksp>;
         };
         td_del_wd: tap_dance_del_wd_del {
             compatible = "zmk,behavior-tap-dance";
@@ -122,7 +137,7 @@
  *                                  `----------------------------'           '----------------------------'
  */
             bindings = <
-&tiesc        AS(N1) AS(N2) AS(N3)   AS(N4)   AS(N5)                                     AS(N6)    AS(N7)   AS(N8)    AS(N9)  AS(N0)   &kp BSPC
+&tiesc        AS(N1) AS(N2) AS(N3)   AS(N4)   AS(N5)                                     AS(N6)    AS(N7)   AS(N8)    AS(N9)  AS(N0)   &td_bksp_wd
 &kp TAB       &kp Q  &kp W  &kp E    &kp R    &kp T                                      &kp Y     &kp U    &kp I     &kp O   &kp P    &td_del_wd
 &mt LCTRL TAB &kp A  &kp S  &kp D    &kp F    &kp G                                      &kp H     &kp J    &kp K     &kp L   AS(SEMI) &kp RET
 &kp LSHFT     &kp Z  &kp X  &kp C    &kp V    &kp B     &mo _SYSM        &mo _SYSM       &kp N     &kp M    AS(COMMA) AS(DOT) AS(FSLH) AS(SQT)
