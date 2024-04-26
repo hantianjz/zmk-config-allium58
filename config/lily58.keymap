@@ -95,7 +95,7 @@
                 , <&macro_release &kp LALT>
                 ;
         };
-        wd_bksp: macro_word_del {
+        wd_bksp: macro_word_bksp {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
