@@ -186,7 +186,7 @@
             bindings = <
 &trans &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT                       &kp CARET   &kp AMPS  &kp STAR  &kp LPAR &kp RPAR &trans
 &trans &trans   &trans &trans   &trans   &trans                          &trans      &trans    &trans    &trans   &trans   &trans
-&trans &trans   &trans &trans   &trans   &trans                          &trans      AS(MINUS) AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
+&trans &trans   &trans &trans   &trans   &trans                          &trans      AS(UNDER) AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
 &trans TM(Z)    TM(X)  TM(C)    TM(V)    &trans    &trans      &trans    TM(N)       TM(M)     TM(COMMA) &trans   &trans   AS(BSLH)
                        &trans   &trans   &trans    &mo _TMUX   &trans    &trans      &kp LEFT  &kp RIGHT
             >;
