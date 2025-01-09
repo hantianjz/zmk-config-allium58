@@ -18,6 +18,7 @@
 #define _SYSM 4
 
 #define AS(keycode) &as LS(keycode) keycode
+#define ASH(keycode) &ash LS(keycode) keycode
 #define TM(keycode) &tmx keycode
 
 &lt {
@@ -26,6 +27,13 @@
 
 / {
     behaviors {
+        ash: auto_shift_hold {
+            compatible = "zmk,behavior-hold-tap";
+            tapping_term_ms = <100>;
+            quick_tap_ms = <0>;
+            flavor = "hold-preferred";
+            bindings = <&kp>, <&kp>;
+        };
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -184,11 +192,11 @@
  *                   `----------------------------'           '------''--------------------'
  */
             bindings = <
-&trans &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT                       &kp CARET   &kp AMPS        &kp STAR  &kp LPAR &kp RPAR &trans
-&trans &trans   &trans &trans   &trans   &trans                          &trans      &trans          &trans    &trans   &trans   &trans
-&trans &trans   &trans &trans   &trans   &trans                          &trans      &as MINUS UNDER AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
-&trans TM(Z)    TM(X)  TM(C)    TM(V)    &trans    &trans      &trans    TM(N)       TM(M)           TM(COMMA) &trans   &trans   AS(BSLH)
-                       &trans   &trans   &trans    &mo _TMUX   &trans    &trans      &kp LEFT        &kp RIGHT
+&trans &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT                       &kp CARET   &kp AMPS   &kp STAR  &kp LPAR &kp RPAR &trans
+&trans &trans   &trans &trans   &trans   &trans                          &trans      &trans     &trans    &trans   &trans   &trans
+&trans &trans   &trans &trans   &trans   &trans                          &trans      ASH(MINUS) AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
+&trans TM(Z)    TM(X)  TM(C)    TM(V)    &trans    &trans      &trans    TM(N)       TM(M)      TM(COMMA) &trans   &trans   AS(BSLH)
+                       &trans   &trans   &trans    &mo _TMUX   &trans    &trans      &kp LEFT   &kp RIGHT
             >;
         };
 
