@@ -30,7 +30,7 @@
         ash: auto_shift_hold {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping_term_ms = <100>;
+            tapping_term_ms = <135>;
             quick_tap_ms = <0>;
             flavor = "hold-preferred";
             bindings = <&kp>, <&kp>;
