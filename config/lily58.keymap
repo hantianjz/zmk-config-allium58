@@ -220,7 +220,7 @@
 &trans &trans    &trans &trans    &trans  &trans                       &trans &trans    &trans    &trans      &trans   TM(0)
 &trans TM(Q)     &trans &trans    &trans  &trans                       &trans &trans    &trans    &tmx_ctrl_o TM(P)    &trans
 &trans TM(A)     TM(S)  TM(D)     &trans  &trans                       &trans TM(MINUS) TM(EQUAL) TM(LBKT)    TM(RBKT) TM(COLON)
-&trans TM(LS(Z)) TM(X)  TM(LS(C)) TM(V)   &trans    &trans   &trans    TM(N)  TM(M)     TM(COMMA) TM(.)       &trans   &trans
+&trans TM(LS(Z)) TM(X)  TM(LS(C)) TM(V)   &trans    &trans   &trans    TM(N)  TM(M)     TM(COMMA) TM(DOT)     &trans   &trans
                      &trans  &trans  &trans    &trans   &trans    &trans &trans    &trans
             >;
         };
