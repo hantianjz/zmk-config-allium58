@@ -205,22 +205,22 @@
 
 /* TMUX
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |  T-0 |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |  T-Q |      |      |      |      |                    |      |      |      | T-CO |  T-P |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |  T-A |  T-S |  T-D |      |      |-------.    ,-------|      |  T-- |  T-+ |  T-[ |  T-] | T-:  |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |  T-Z |  T-X |  T-C |  T-V |      |-------|    |-------|  T-N |  T-M |  T-, |      |      |      |
+ * |      |  T-Z |  T-X |  T-C |  T-V |      |-------|    |-------|  T-N |  T-M |  T-, |  T-. |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \      \  |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
             bindings = <
-&trans &trans &trans &trans  &trans  &trans                       &trans &trans    &trans    &trans      &trans   &trans
-&trans TM(Q)  &trans &trans  &trans  &trans                       &trans &trans    &trans    &tmx_ctrl_o TM(P)    &trans
-&trans TM(A)  TM(S)  TM(D)   &trans  &trans                       &trans TM(MINUS) TM(EQUAL) TM(LBKT)    TM(RBKT) TM(COLON)
-&trans TM(Z)  TM(X)  TM(C)   TM(V)   &trans    &trans   &trans    TM(N)  TM(M)     TM(COMMA) &trans      &trans   &trans
+&trans &trans    &trans &trans    &trans  &trans                       &trans &trans    &trans    &trans      &trans   TM(0)
+&trans TM(Q)     &trans &trans    &trans  &trans                       &trans &trans    &trans    &tmx_ctrl_o TM(P)    &trans
+&trans TM(A)     TM(S)  TM(D)     &trans  &trans                       &trans TM(MINUS) TM(EQUAL) TM(LBKT)    TM(RBKT) TM(COLON)
+&trans TM(LS(Z)) TM(X)  TM(LS(C)) TM(V)   &trans    &trans   &trans    TM(N)  TM(M)     TM(COMMA) TM(.)       &trans   &trans
                      &trans  &trans  &trans    &trans   &trans    &trans &trans    &trans
             >;
         };
