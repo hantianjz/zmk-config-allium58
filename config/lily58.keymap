@@ -181,22 +181,22 @@
         shift_layer {
 /* SHIFT
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |   !  |   @  |   #  |   $  |   %  |                    |   ^  |   &  |   *  |   (  |   )  |      |
+ * |      |   !  |   @  |   #  |   $  |   %  |                    |   ^  |   &  |   *  |   (  |   )  |  T-0 |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |   -  |   =  |   [  |   ]  |  T-: |
+ * |      |      |  T-S |      |      |      |-------.    ,-------|      |   -  |   =  |   [  |   ]  |  T-: |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |  T-Z |  T-X |  T-C |  T-V |      |-------|    |-------|  T-N |  T-M |  T-, |      |      |   \  |
+ * |      |  T-Z |  T-X |  T-C |  T-V |      |-------|    |-------|  T-N |  T-M |  T-, |  T-. |      |   \  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |      | /       /       \      \  |      | LEFT |RIGHT |
  *                   `----------------------------'           '------''--------------------'
  */
             bindings = <
-&trans &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT                       &kp CARET   &kp AMPS   &kp STAR  &kp LPAR &kp RPAR &trans
-&trans &trans   &trans &trans   &trans   &trans                          &trans      &trans     &trans    &trans   &trans   &trans
-&trans &trans   &trans &trans   &trans   &trans                          &trans      ASH(MINUS) AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
-&trans TM(Z)    TM(X)  TM(C)    TM(V)    &trans    &trans      &trans    TM(N)       TM(M)      TM(COMMA) &trans   &trans   AS(BSLH)
+&trans &kp EXCL  &kp AT &kp HASH  &kp DLLR &kp PRCNT                       &kp CARET   &kp AMPS   &kp STAR  &kp LPAR &kp RPAR TM(0)
+&trans &trans    &trans &trans    &trans   &trans                          &trans      &trans     &trans    &trans   &trans   &trans
+&trans &trans    TM(S)  &trans    &trans   &trans                          &trans      ASH(MINUS) AS(EQUAL) AS(LBKT) AS(RBKT) TM(COLON)
+&trans TM(LS(Z)) TM(X)  TM(LS(C)) TM(V)    &trans    &trans      &trans    TM(N)       TM(M)      TM(COMMA) TM(DOT)  &trans   AS(BSLH)
                        &trans   &trans   &trans    &mo _TMUX   &trans    &trans      &kp LEFT   &kp RIGHT
             >;
         };
