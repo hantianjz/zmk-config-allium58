@@ -24,14 +24,12 @@
     tapping-term-ms = <175>;
 };
 
-/ {
-    kscan: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-            diode-direction = "col2row";
-            wakeup-source;
+/* Add this block to the top of your .keymap file */
+&kscan0 {
+    wakeup-source;
+};
 
-            ...
-        };
+/ {
     behaviors {
         ash: auto_shift_hold {
             compatible = "zmk,behavior-hold-tap";
