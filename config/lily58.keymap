@@ -25,6 +25,13 @@
 };
 
 / {
+    kscan: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+            diode-direction = "col2row";
+            wakeup-source;
+
+            ...
+        };
     behaviors {
         ash: auto_shift_hold {
             compatible = "zmk,behavior-hold-tap";
